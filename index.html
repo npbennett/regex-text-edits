@@ -11,37 +11,6 @@
         var noBreaks = originalText.replace(/(?<!\n)\n(?!\n)/gm, " ");
         $("#pdfText").val(noBreaks);
       });
-      $("#pTags").click(function() {
-        var originalText = $("#pdfText").val();
-        var pTags = originalText.replace(/(\n){2,}|(\s){3,}/gm, "$1</p>\r\n<p>$2");
-        pTags = pTags.replace(/(?<!\n)\n(?!\n)/gm, "");
-        pTags = pTags.replace(/(?=\w)/, "<p>");
-        pTags = pTags.replace(/(?!.)/ms, "</p>");
-        $("#pdfText").val(pTags);
-      });
-      $("#executiveTranscript").click(function() {
-        var originalText = $("#pdfText").val();
-        var boldText = originalText.replace(/(?=Executive Summary)/gm, "<b>");
-        boldText = boldText.replace(/(?<=Executive Summary)/gm, "</b>");
-        boldText = boldText.replace(/(?=Transcript)/gm, "<b>");
-        boldText = boldText.replace(/(?<=Transcript)/gm, "</b>");
-        $("#pdfText").val(boldText);
-      });
-      $("#boldCountry").click(function() {
-        var originalText = $("#pdfText").val();
-        var boldCountry = originalText.replace(/(?=USA)/gm, "<b>");
-        boldCountry = boldCountry.replace(/(?<=USA)/gm, "</b>");
-        boldCountry = boldCountry.replace(/(?=Canada)/gm, "<b>");
-        boldCountry = boldCountry.replace(/(?<=Canada)/gm, "</b>");
-        $("#pdfText").val(boldCountry);
-      });
-      $("#liTags").click(function() {
-        var originalText = $("#pdfText").val();
-        var liTags = originalText.replace(/(\W{2}\s)|((?<!\n)\n(?!\n))/gm, "</li>\r<li>");
-        liTags = liTags.replace(/^.\s/, "<li>");
-        liTags = liTags.replace(/(?!.)/s, "</li>");
-        $("#pdfText").val(liTags);
-      });
     });
   </script>
   <style>
@@ -54,22 +23,11 @@
     }
 
     button {
-      margin-left: 20px;
-      padding: 0px;
-      cursor: pointer;
-    }
-
-    button.big {
-      font-size: 60px;
-      width: 675px;
-      height: 200px;
-    }
-
-    button.small {
       font-size: 20px;
-      margin-top: 20px;
-      width: 441px;
       height: 70px;
+      margin-left: 20px;
+      padding: 0px 20px;
+      cursor: pointer;
     }
 
     #outerDiv {
@@ -89,11 +47,7 @@
   <div id="outerDiv">
     <div id="innerDiv">
       <textarea id="pdfText"></textarea>
-      <button type="button" id="newLine" class="big">Remove single<br />line break</button>
-      <button type="button" id="pTags" class="big">Add paragraph<br />tags from Word</button>
-      <button type="button" id="executiveTranscript" class="small">Bold Executive Summary / Transcript</button>
-      <button type="button" id="boldCountry" class="small">Bold country name</button>
-      <button type="button" id="liTags" class="small">Add li tags</button>
+      <button type="button" id="newLine">Remove single line break</button>
     </div>
   </div>
 </body>
